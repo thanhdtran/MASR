@@ -15,15 +15,15 @@ parser.add_argument('--saved_path', default='chk_points', type=str)
 parser.add_argument('--load_best_chkpoint', default=1, type=int, help='loading the best checking point from previous run? (yes/no)')
 
 parser.add_argument('--path', default='data', help='Input data path', type=str)
-parser.add_argument('--dataset', default='test',
-                    help='Dataset types: tafeng, ijcai-2015', type=str)
+parser.add_argument('--dataset', default='demo',
+                    help='Dataset name', type=str)
 
 parser.add_argument('--epochs', default=50, help='Number of epochs to run', type=int)
 parser.add_argument('--batch_size', default=256, help='Batch size', type=int)
-parser.add_argument('--num_factors', default=8, help='number of latent factors', type=int)
+parser.add_argument('--num_factors', default=64, help='number of latent factors', type=int)
 
-parser.add_argument('--reg_mdr', nargs='?', default='0.00001', help ='Regularization for users and item embeddings', type=str) #update reg to 0.01 for ml100k
-parser.add_argument('--reg_mass', nargs='?',  default='0.0001', help ='Regularization for users and item embeddings', type=str) #update reg to 0.01 for ml100k
+parser.add_argument('--reg_mdr', nargs='?', default='0.0', help ='Regularization for users and item embeddings', type=str) #update reg to 0.01 for ml100k
+parser.add_argument('--reg_mass', nargs='?',  default='0.0', help ='Regularization for users and item embeddings', type=str) #update reg to 0.01 for ml100k
 parser.add_argument('--num_neg', default=4, type=int, help='Number of negative instances for each positive sample')
 parser.add_argument('--lr', default=0.001, type=float, help = 'Learning rate') #0.001 0.01 works well for amazon dataset
 parser.add_argument('--loss_type', nargs='?', default='bpr',
@@ -81,7 +81,7 @@ parser.add_argument('--init_transform_type', default = 'identity', type=str, hel
                                                                                   'he-normal, he-uniform, '
                                                                                   'normal, xavier, lecun')
 parser.add_argument('--adv', default=1, type=int, help='Training with adversarial learning or not.')
-parser.add_argument('--reg_noise', default=1.0, type=float, help='Training with adversarial learning or not.')
+parser.add_argument('--reg_noise', default=1.0, type=float, help='Noise Regularization.')
 parser.add_argument('--eps', default=1.0, type=float, help='Noise magnitude')
 
 
