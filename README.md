@@ -20,7 +20,8 @@ This repo contains source code for our paper: "Adversarial Mahalanobis Distance-
 - <code>dropout</code>: Dropout. Default is 0.2
 - <code>act_func</code>: Activation function for the MASS model. 3 options [none, relu, tanh]. "none" means identity activation function here.
 - <code>act_func_mdr</code>: Activation function for MDR model. Default is "none".
-- <code>model</code>: model to train. 3 options ["mdr", "mass", "masr"]
+- <code>model</code>: model to train. 3 options ["mdr", "mass", "masr"].
+- <code>beta</code>: contribution of MASS in MASR. Default is 0.5
 - <code>out</code>: whether or not saving the output checkpoint. Default is 1, meaning saving output checkpoint for each epoch.
 - <code>cuda</code>: Using GPU or not. 1 = Using GPU, 0 = using CPU. Default is 0.
 - <code>data_type</code>: whether or not using both user + playlist + track info ["upt"], or only user + track info ["ut"], or playlist + track info ["pt"]. For MDR, choose ["upt"]. For MASS, choose ["ut"]. This parameter is used when training MDR, or MASS. (3 options ["upt", "ut", "pt"].
