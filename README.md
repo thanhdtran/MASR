@@ -5,7 +5,7 @@ This repo contains source code for our paper: "Adversarial Mahalanobis Distance-
 - *.rating data file: [user_id]:[playlist_id] \t track_id \t [random-position-number] \t [1]
 - *.negative data file: ([user_id]:[playlist_id],[track_id]) \t [negative_track_id1] \t [negative_track_id2] ...
 
-## HYPER-PARAMETERS:
+## Hyper-parameters:
 - <code>saved_path</code>: path to save the output checkpoint, default is  [chk_points] folder.
 - <code>load_best_chkpoint</code>: whether or not loading the best saved checkpoint [1 = Yes, 0 = No, Default is 0].
 - <code>path</code>: based path to the data directory. Default is [data] folder.
