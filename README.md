@@ -2,8 +2,8 @@
 This repo contains source code for our paper: "Adversarial Mahalanobis Distance-based Attentive Song Recommender for Automatic Playlist Continuation" published in SIGIR 2019. This source code is coming soon (expect to be pushed before July 21)!
 
 ## Demo example:
-### Running MDR:
-#### Running with MDR:
+### Training MDR and AMDR:
+#### Training with MDR:
 
 ```
 python -u main.py --cuda 1 --dropout 0.2 --dataset demo --epochs 50 --load_best_chkpoint 0 --model mdr --num_factors 64 --reg_mdr 0.0 --adv 0 --act_func_mdr none --data_type upt
@@ -17,3 +17,5 @@ python main.py --dataset demo --data_type upt --model mdr --num_factors  64 --re
 ```
 
 If you dont have GPU, then set ```--cuda 0```.
+
+Similarly, we can do for MASS. After that, we can learn MASR, as a combined model, accordingly.
