@@ -2,7 +2,6 @@
 This repo contains source code for our paper: "Adversarial Mahalanobis Distance-based Attentive Song Recommender for Automatic Playlist Continuation" published in SIGIR 2019. This source code is coming soon (expect to be pushed before July 21)!
 
 ## Data Format:
-#### Training data: 
 - .rating data file: [user_id]:[playlist_id] \t track_id \t [random-position-number] \t [1]
 - .negative data file: ([user_id]:[playlist_id],[track_id]) \t [negative_track_id1] \t [negative_track_id2] ...
 ## Demo example:
