@@ -27,8 +27,8 @@ This repo contains source code for our paper: "Adversarial Mahalanobis Distance-
 - <code>data_type_mdr</code>: Data type of MDR. This parameter is useful when training MASR, so we need to know which MDR model with which input data type we want to use.
 - <code>data_type_mass</code>: Data type of MASS. This parameter is useful when training MASR, so we need to know which MASS model with which input data type we want to use.
 - <code>adv</code>: training with flexible adversarial training? [1 = Yes, 0 = No]. Please training with normal MDR, or MASS to get best initial checkpoint and then train with adversarial training to get best results. Training with adv=1 from scratch cat lead to a lower result.
-- <code>reg_noise</code>: regularization term of noise. Default is 1.0. 
-- <code>eps</code>: noise magnitude. Default is 1.0. For smaller hidden factors (i.e. 8 hidden factors), this noise magnitude can be set to 0.5 if you observe non-boosting results. 
+- <code>reg_noise</code>: regularization term of noise. Default is 1.0. [or \lambda_\delta in Equation (23)]
+- <code>eps</code>: noise magnitude. Default is 1.0 [refers to \eps in Equation (24)]. For smaller hidden factors (i.e. 8 hidden factors), this noise magnitude can be set to 0.5 if you observe non-boosting results. 
 
 
 ## Demo example:
