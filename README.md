@@ -40,13 +40,25 @@ This repo contains source code for our paper: "Adversarial Mahalanobis Distance-
 python -u main.py --cuda 1 --dropout 0.2 --dataset demo --epochs 50 --load_best_chkpoint 0 --model mdr --num_factors 64 --reg_mdr 0.0 --adv 0 --act_func_mdr none --data_type upt
 ```
 
-#### Running with AMDR:
+#### Training with AMDR:
 After training MDR, we will have best checkpoint saved at **chk_points**. The model will then automatically load the best chekpoint w.r.t the validation dataset, and use it as an initial start for adversarial learning. Without the initial learning of MDR, if you learn with adversarial learning from the sractch, we can get lower results.
 
 ```
 python main.py --dataset demo --data_type upt --model mdr --num_factors  64 --reg_mdr 0.0 --load_best_chkpoint 1 --cuda 1 --epochs 50 --adv 1 --reg_noise 1.0 --eval 0 --lr 1e-3 
 ```
+#### Training with MASS:
+
+```
+python -u main.py --act_func relu --cuda 1 --dropout 0.2 --dataset demo --epochs 50 --load_best_chkpoint 0 --model mass --num_factors 64 --reg_mass 1e-6 --adv 0 --data_type ut
+```
+
+#### Training with AMASS:
+```
+python main.py --act_func relu --dataset demo --data_type ut --model mass --num_factors  64 --reg_mass 1e-6 --load_best_chkpoint 1 --cuda 1 --epochs 50 --adv 1 --reg_noise 1.0 --eval 0 --lr 1e-3 
+```
+
+
 
 If you dont have GPU, then set ```--cuda 0```.
 
-Similarly, we can do for MASS. After that, we can learn MASR, as a combined model, accordingly.
+After that, we can learn MASR, as a combined model, accordingly.
