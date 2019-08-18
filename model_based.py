@@ -11,27 +11,28 @@ class ModelBased(object):
         return str(args.model)
     def _make_model_desc(self, args, model = ''):
         # model_desc = '%s_'%args.model #mdr, mass, or masr
-        if args.model == 'mass' or args.model == 'mdr':
+        if 'mass' in args.model or 'mdr' in  args.model:
             model_desc = 'type-%s_'%args.data_type
         else:
             #combined model
-            if model == 'mass':
+            if 'mass' in model:
                 model_desc = 'type-%s_' % args.data_type_mass
             else:
                 model_desc = 'type-%s_' % args.data_type_mdr
         model_desc += 'nfactors_%d' % args.num_factors
         model_name = args.model if model == '' else model
-        if model_name == 'mdr':
+        print ("model name:",model_name)
+        if 'mdr' in model_name:
             model_desc += '_reg_%s' % str(args.reg_mdr)
             model_desc += '_act_%s'% str(args.act_func_mdr)
             # print model_desc
             return model_desc
-        elif model_name == 'mass':
+        elif 'mass' in model_name:
             model_desc += '_reg_%s' % str(args.reg_mass)
             model_desc += '_seq%d' % args.max_seq_len
             model_desc += '_act_%s'% str(args.act_func)
             return model_desc
-        elif model_name == 'masr':
+        elif 'masr' in model_name:
             model_desc += '_mdr-reg_%s' % str(args.reg_mdr)
             model_desc += '_mass-reg_%s' % str(args.reg_mass)
             model_desc += '_seq%d' % args.max_seq_len
@@ -64,12 +65,16 @@ class ModelBased(object):
         lst_models = ['mass', 'mdr']
         if args.eval:
             lst_models = ['mass', 'mdr', 'masr']
+        if args.adv:
+            model = 'adv-' + args.model
+        else:
+            model = args.model
         if args.model in lst_models:
             best_hits = 0.0
             best_ndcg = 0.0
             best_saved_file = ''
 
-            saved_file_pattern = '%s_%s_%s*'%(args.dataset, args.model, self._make_model_desc(args))
+            saved_file_pattern = '%s_%s_%s*'%(args.dataset, model, self._make_model_desc(args))
             print 'searching: ',saved_file_pattern
             for filepath in glob.glob(os.path.join(args.saved_path,saved_file_pattern)):
                 # filepath = os.path.join(args.saved_path, fname)
@@ -108,8 +113,11 @@ class ModelBased(object):
             #load best mdr checkpoint
             best_mdr_file = ''
             best_mdr_hits, best_mdr_ndcgs = 0,0
-            mdr_files_pattern = '%s_mdr_%s*'%(args.dataset, self._make_model_desc(args, 'mdr'))
-            # print mdr_files_pattern
+            print (args.adv)
+            mdr_model = 'adv-mdr' if args.adv else 'mdr'
+            mass_model = 'adv-mass' if args.adv else 'mass'
+            mdr_files_pattern = '%s_%s_%s*'%(args.dataset, mdr_model, self._make_model_desc(args, 'mdr'))
+            print mdr_files_pattern
             print 'searching mdr: ',mdr_files_pattern
             for filepath in glob.glob(os.path.join(args.saved_path, mdr_files_pattern)):
                 print filepath
@@ -130,7 +138,7 @@ class ModelBased(object):
             #load best mass checkpoint
             best_mass_file = ''
             best_mass_hits, best_mass_ndcgs = 0, 0
-            mass_files_pattern = '%s_mass_%s*' % (args.dataset, self._make_model_desc(args, 'mass'))
+            mass_files_pattern = '%s_%s_%s*' % (args.dataset, mass_model, self._make_model_desc(args, 'mass'))
             print 'searching mass: ',mass_files_pattern
             for filepath in glob.glob(os.path.join(args.saved_path, mass_files_pattern)):
                 if os.path.isfile(filepath):

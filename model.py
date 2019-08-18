@@ -13,7 +13,6 @@ from torch.optim.lr_scheduler import StepLR
 from Net import MDR, MASS, MASR
 
 
-
 class REC(ModelBased):
     def __init__(self, loss='pointwise',
                  n_factors = 8,
@@ -62,7 +61,6 @@ class REC(ModelBased):
         self._loss_func = None
         self._dropout = dropout
         self._distance_metric = distance_metric
-        self._gate_tying = gate_tying
         self._model = model
         self._beta = beta
 
@@ -163,26 +161,26 @@ class REC(ModelBased):
                                  embedding_size=self._embedding_size,
                                  nonlinear_func=self._activation_func_mdr,
                                  num_layers=self._n_layers_mdr,
-                                 dropout_prob=self._dropout)
+                                 dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps)
             elif self._args.data_type_mdr == 'pt':
                 mdr_model = MDR(n_users=self._n_playlists, n_items=self._n_items, n_playlists=None,
                                  embedding_size=self._embedding_size,
                                  nonlinear_func=self._activation_func_mdr,
                                  num_layers=self._n_layers_mdr,
-                                 dropout_prob=self._dropout)
+                                 dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps)
             else:
                 mdr_model = MDR(n_users=self._n_users, n_items=self._n_items, n_playlists=None,
                                  embedding_size=self._embedding_size,
                                  nonlinear_func=self._activation_func_mdr,
                                  num_layers=self._n_layers_mdr,
-                                 dropout_prob=self._dropout)
+                                 dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps)
 
             if self._args.data_type_mass == 'upt':
                 mass_model = MASS(n_users=self._n_users, n_items=self._n_items, n_playlists = self._n_playlists,
                                           embedding_size=self._embedding_size,
                                           item_seq_size=self._max_user_seq_len, distance_type=self._distance_metric,
                                           nonlinear_func=self._activation_func,
-                                          dropout_prob=self._dropout
+                                          dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps
                                           )
             elif self._args.data_type_mass == 'pt':
                 mass_model = MASS(n_users=self._n_playlists, n_items=self._n_items, n_playlists=None,
@@ -190,7 +188,7 @@ class REC(ModelBased):
                                           item_seq_size=self._max_user_seq_len,
                                           distance_type=self._distance_metric,
                                           nonlinear_func=self._activation_func,
-                                          dropout_prob=self._dropout
+                                          dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps
                                           )
             else:
                 mass_model = MASS(n_users=self._n_users, n_items=self._n_items, n_playlists=None,
@@ -198,7 +196,7 @@ class REC(ModelBased):
                                           item_seq_size=self._max_user_seq_len,
                                           distance_type=self._distance_metric,
                                           nonlinear_func=self._activation_func,
-                                          dropout_prob=self._dropout
+                                          dropout_prob=self._dropout, adv=self._args.adv, eps=self._args.eps
                                           )
 
             self._net = MASR(mdr_model=mdr_model, mass_model=mass_model, beta=self._args.beta)
