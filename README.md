@@ -59,6 +59,6 @@ python main.py --act_func relu --dataset demo --data_type ut --model mass --num_
 
 
 
-If you dont have GPU, then set ```--cuda 0```.
+If you dont have GPU, then set ```--cuda 0```. Please enjoy the **boosted performance** from the adversarial training with our flexible noise magnitude.
 
 After that, we can learn MASR, as a combined model, accordingly.
