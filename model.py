@@ -11,7 +11,7 @@ from torch.autograd import Variable
 from model_based import ModelBased
 from torch.optim.lr_scheduler import StepLR
 from Net import MDR, MASS, MASR
-import Net as memnet
+
 
 
 class REC(ModelBased):
@@ -33,9 +33,8 @@ class REC(ModelBased):
                  activation_func = 'none', #relu, or tanh,
                  activation_func_mdr = 'none',
                  n_layers_mdr=1,
-                 gate_tying=memnet.GATE_GLOBAL,
                  model='mass',
-                 beta=0.9, args=None
+                 beta=0.5, args=None
                  ):
         super(REC, self).__init__()
         self._args = args
