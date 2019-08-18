@@ -58,7 +58,9 @@ python main.py --act_func relu --dataset demo --data_type ut --model mass --num_
 ```
 
 #### Training with MASR:
+```
 python main.py --act_func relu --dataset demo --model masr --num_factors  64 --reg_mass 1e-6 --reg_mdr 0.0 --load_best_chkpoint 1 --cuda 1 --epochs 50 --adv 0 --reg_noise 1.0 --eval 0 --lr 1e-3 --act_func_mdr none --data_type_mdr upt --data_type_mass ut --beta 0.5
+```
 
 #### Training with AMASR:
 ```
