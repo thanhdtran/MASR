@@ -178,13 +178,13 @@ class ModelBased(object):
                 else:
                     checkpoint = torch.load(best_mass_file, map_location=lambda storage, loc: storage)
 
-                self._net._memnet.load_state_dict(checkpoint['model'])
+                self._net._mass.load_state_dict(checkpoint['model'])
 
 
                 print("=> loaded checkpoint '{}' (epoch {})"
                                  .format(best_mass_file, checkpoint['epoch']))
                 #no train the mass and mdr?
-                for params in self._net._memnet.parameters():
+                for params in self._net._mass.parameters():
                     params.requires_grad = False
 
 
