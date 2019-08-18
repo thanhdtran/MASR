@@ -1,4 +1,4 @@
-import Net as memnet
+
 import pytorch_utils as my_utils
 import time
 import data_loader as data_loader
