@@ -5,5 +5,4 @@ SEED = 98765
 PADDING_IDX = 0
 ACTIVATION_FUNC = None
 model_type = 'mdr'
-hops_design=1
 INIT_TRANSFORM_TYPE='identity'
