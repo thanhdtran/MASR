@@ -85,7 +85,7 @@ class REC(ModelBased):
             for params in self._net._mdr.parameters():
                 if params.requires_grad:
                     return True
-            for params in self._net._memnet.parameters():
+            for params in self._net._mass.parameters():
                 if params.requires_grad:
                     return True
         return False
