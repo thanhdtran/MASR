@@ -12,8 +12,6 @@ import global_constants as gc
 
 
 L1, L2 = ('l1', 'l2')
-WEIGHT_TYINGS = ADJACENT, LAYER_WISE, _ = ('adjacent', 'layerwise', None)
-GATE_TYINGS = GATE_GLOBAL, GATE_HOP_SPECIFIC = ('gate_global', 'gate_hop_specific')
 def L2_pow2_func(x):
     #square the L2 distance
     return x **2
