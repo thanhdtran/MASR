@@ -69,3 +69,15 @@ python main.py --act_func relu --dataset demo --model masr --num_factors  64 --r
 
 If you dont have GPU, then set ```--cuda 0```. Please enjoy the **boosted performance** from the adversarial training with our flexible noise magnitude.
 
+Please cite our paper if you see it is helpful at:
+```
+@inproceedings{tran2019adversarial,
+  title={Adversarial Mahalanobis Distance-based Attentive Song Recommender for Automatic Playlist Continuation},
+  author={Tran, Thanh and Sweeney, Renee and Lee, Kyumin},
+  booktitle={Proceedings of the 42nd International ACM SIGIR Conference on Research and Development in Information Retrieval},
+  pages={245-254},
+  year={2019},
+  organization={ACM}
+}
+```
+
